@@ -124,7 +124,7 @@ reactable(
     dec_long = colDef(name = "Long")
   ),
   theme = reactableTheme(
-      color = "#BCEBFD",
+      color = "#D6E4E9",
       backgroundColor = "#1a0933",
       style = list(
         fontSize = ".8rem"
@@ -143,17 +143,17 @@ yr_count <- dat |>
 
 fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                 marker = list(
-                  opacity = .5,
-                  color = '#BCEBFD',
+                  opacity = 1,
+                  color = '#D6E4E9',
                   line = list(
-                    color = '#BCEBFD',
+                    color = '#D6E4E9',
                     width = .2))) |> 
   layout(
     paper_bgcolor = "#00000000",
     title = list(
       font = list(
         size = 11,
-             color = '#BCEBFD'),
+             color = '#D6E4E9'),
       text = "Sightings 1993-2014"
        ),
     plot_bgcolor='#00000000', 
@@ -164,7 +164,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       gridcolor = '#00000000',
       tickfont = list(
              size = 8,
-             color = '#BCEBFD')
+             color = '#D6E4E9')
       ), 
     yaxis = list( 
       title = "",
@@ -173,7 +173,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       gridcolor = '#00000000',
       tickfont = list(
              size = 8,
-             color = 'rgb(158,202,225)')
+             color = '#D6E4E9')
       )
     ) |> 
   config(displayModeBar = F)
