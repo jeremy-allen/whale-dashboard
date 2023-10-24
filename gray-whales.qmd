@@ -187,3 +187,10 @@ fig
 :::{.my-ref}
 Gearin, Patrick (2016). Gray whale survey and sightings ranging from California to Kodiak Island, Alaska conducted by the National Marine Mammal Laboratory from 1993-07-05 to 2014-10-24 (NCEI Accession 0145636). NOAA National Centers for Environmental Information. Dataset. [https://www.ncei.noaa.gov/archive/accession/0145636](https://www.ncei.noaa.gov/archive/accession/0145636). Accessed 2023-10-23
 :::
+
+<br>
+<br>
+
+:::{.my-ref}
+[code for this Quarto dashboard](https://github.com/jeremy-allen/whale-dashboard.git)
+:::
