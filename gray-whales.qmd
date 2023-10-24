@@ -86,8 +86,10 @@ fig <- dat  |>
     lat = ~dec_lat,
     lon = ~dec_long,
     type = "scattermapbox",
-    hovertext = dat[,"date"],
-    marker = list(color = "fuchsia")) 
+    text = ~date,
+    hoverinfo = 'text',
+    marker = list(color = "fuchsia"),
+    alpha = .4)
 fig <- fig  |> 
   layout(
     mapbox= list(
