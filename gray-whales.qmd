@@ -6,7 +6,6 @@ format:
     theme:
      - vapor
      - custom.scss
-embed-resources: true
 ---
 
 ```{r}
