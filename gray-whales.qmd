@@ -56,12 +56,11 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
   mutate(date = lubridate::mdy(date)) |>
   arrange(date) |>
   mutate(month = lubridate::month(date, label = TRUE)) |>
-  #mutate(photographer = map_chr(photographer_1, initials)) |> 
   mutate(research_group = as_factor(research_group),
          year = as_factor(year),
          contributors = as_factor(contributors),
-         sreg2 = as_factor(sreg2)) |> 
-         #photographer_1 = as_factor(photographer_1)) |>
+         sreg2 = as_factor(sreg2),
+         photographer_1 = as_factor(photographer_1)) |>
   relocate(month, .after = date)
 
 
@@ -72,7 +71,6 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
 <br>
 
 ![](images/gray-whale-illustration.png)
-
 
 # Sightings
 
@@ -115,8 +113,17 @@ fig
 
 dat |> 
   select(year, month, date, research_group, photographer_1, dec_lat, dec_long) |> 
+  mutate(across(where(is.factor), as.character)) |>
 reactable(
-  filterable = TRUE
+  filterable = TRUE,
+  columns = list(
+    year = colDef(name = "Year"),
+    month = colDef(name = "Month"),
+    date = colDef(name = "Date"),
+    research_group = colDef(name = "Research Group"),
+    photographer_1 = colDef(name = "Lat"),
+    dec_long = colDef(name = "Long")
+  )
 )
 ```
 
