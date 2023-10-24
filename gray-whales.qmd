@@ -88,8 +88,7 @@ fig <- dat  |>
     type = "scattermapbox",
     text = ~date,
     hoverinfo = 'text',
-    marker = list(color = "fuchsia"),
-    alpha = .4)
+    marker = list(color = "fuchsia"))
 fig <- fig  |> 
   layout(
     mapbox= list(
