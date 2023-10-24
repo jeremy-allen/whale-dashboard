@@ -120,8 +120,15 @@ reactable(
     month = colDef(name = "Month"),
     date = colDef(name = "Date"),
     research_group = colDef(name = "Research Group"),
-    photographer_1 = colDef(name = "Lat"),
+    photographer_1 = colDef(name = "Photographer"),
     dec_long = colDef(name = "Long")
+  ),
+  theme = reactableTheme(
+      color = "#BCEBFD",
+      backgroundColor = "#1a0933",
+      style = list(
+        fontSize = ".8rem"
+      )
   )
 )
 ```
@@ -137,16 +144,16 @@ yr_count <- dat |>
 fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                 marker = list(
                   opacity = .5,
-                  color = 'rgb(158,202,225)',
+                  color = '#BCEBFD',
                   line = list(
-                    color = 'rgb(158,202,225)',
+                    color = '#BCEBFD',
                     width = .2))) |> 
   layout(
     paper_bgcolor = "#00000000",
     title = list(
       font = list(
         size = 11,
-             color = 'rgb(158,202,225)'),
+             color = '#BCEBFD'),
       text = "Sightings 1993-2014"
        ),
     plot_bgcolor='#00000000', 
@@ -157,7 +164,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       gridcolor = '#00000000',
       tickfont = list(
              size = 8,
-             color = 'rgb(158,202,225)')
+             color = '#BCEBFD')
       ), 
     yaxis = list( 
       title = "",
@@ -175,3 +182,8 @@ fig
 
 ```
 
+# Source
+
+:::{.my-ref}
+Gearin, Patrick (2016). Gray whale survey and sightings ranging from California to Kodiak Island, Alaska conducted by the National Marine Mammal Laboratory from 1993-07-05 to 2014-10-24 (NCEI Accession 0145636). NOAA National Centers for Environmental Information. Dataset. [https://www.ncei.noaa.gov/archive/accession/0145636](https://www.ncei.noaa.gov/archive/accession/0145636). Accessed 2023-10-23
+:::
