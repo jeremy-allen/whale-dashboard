@@ -1,0 +1,12 @@
+name: gray_whales_quarto_dashboard
+title: Gray Whales Quarto Dashboard
+username: jeremy.allen
+account: jeremy.allen
+server: colorado.posit.co
+hostUrl: https://colorado.posit.co/rsc/__api__
+appId: 18432
+bundleId: 82231
+url: https://colorado.posit.co/rsc/gray-whales/
+version: 1
+asMultiple: FALSE
+asStatic: TRUE
