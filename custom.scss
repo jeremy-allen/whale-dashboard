@@ -1,0 +1,28 @@
+/*-- scss:defaults --*/
+
+$card-border-width: 0 !default;
+
+/*-- scss:rules --*/
+
+.navbar {
+  background-color: #1a0933;
+  color: rgba(255,255,255,.8);
+}
+
+.quarto-dashboard .navbar .navbar-nav .active {
+  background-image: url("images/active.png");
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-color: #1a0933;
+}
+
+.card-body {
+  background: rgba(255,255,255,0);
+}
+
+.stats {
+  padding: 4px;
+  font-size: 1rem;
+  margin: auto;
+}

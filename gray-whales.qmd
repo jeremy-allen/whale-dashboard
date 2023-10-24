@@ -1,0 +1,156 @@
+---
+title: "Gray Whale Sightings"
+logo: images/gray-whale-logo2.png
+format:
+  dashboard:
+    theme:
+     - vapor
+     - custom.scss
+embed-resources: true
+---
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(plotly)
+```
+
+
+
+```{r}
+initials <- function(x) {
+  x <- "Jeremy D Allen"
+  words <- str_split_1(x, " ")
+
+  if (str_detect(words, " ")) {
+    if (str_detect(words[[1]], ",")) {
+      new <- append(words[-1], words[1])
+      initials <- str_extract(new, pattern = "^[A-Za-z]")
+      initials <- paste(initials, collapse = "")
+      initials <- str_to_upper(initials)
+    } else {
+      initials <- str_extract(words, pattern = "^[A-Za-z]")
+      initials <- paste(initials, collapse = "")
+      initials <- str_to_upper(initials)
+    }
+  } else {
+    initials <- str_to_upper(words)
+  }
+  initials
+}
+
+```
+
+
+```{r}
+
+dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
+  janitor::clean_names() |>
+  filter(
+    !is.na(photographer_1),
+    !is.na(dec_lat),
+    !is.na(dec_long)
+  ) |> 
+  mutate(date = lubridate::mdy(date)) |>
+  arrange(date) |>
+  mutate(month = lubridate::month(date, label = TRUE)) |>
+  #mutate(photographer = map_chr(photographer_1, initials)) |> 
+  mutate(research_group = as_factor(research_group),
+         year = as_factor(year),
+         contributors = as_factor(contributors),
+         sreg2 = as_factor(sreg2)) |> 
+         #photographer_1 = as_factor(photographer_1)) |>
+  relocate(month, .after = date)
+
+
+```
+
+# Hi!
+
+<br>
+
+![](images/gray-whale-illustration.png)
+
+
+# Map
+
+## Row
+
+```{r}
+#| padding: 0px
+#| width: 80%
+
+fig <- dat  |> 
+  plot_ly(
+    lat = ~dec_lat,
+    lon = ~dec_long,
+    type = "scattermapbox",
+    hovertext = dat[,"date"],
+    marker = list(color = "fuchsia")) 
+fig <- fig  |> 
+  layout(
+    mapbox= list(
+    style = "white-bg",
+    zoom = 3,
+    center = list(lon = -127, lat= 46),
+    layers = list(list(
+      below = 'traces',
+      sourcetype = "raster",
+      source = list("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}")))
+     ),
+    paper_bgcolor = "#00000000"
+    )
+
+fig
+
+
+```
+
+```{r}
+#| padding: 0px
+#| width: 20%
+
+yr_count <- dat |> 
+  count(year)
+
+fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
+                marker = list(
+                  opacity = .5,
+                  color = 'rgb(158,202,225)',
+                  line = list(
+                    color = 'rgb(158,202,225)',
+                    width = .2))) |> 
+  layout(
+    paper_bgcolor = "#00000000",
+    title = list(
+      font = list(
+        size = 11,
+             color = 'rgb(158,202,225)'),
+      text = "By Year"
+       ),
+    plot_bgcolor='#00000000', 
+    xaxis = list( 
+      title = "",
+      zerolinecolor = '#00000000', 
+      zerolinewidth = 2, 
+      gridcolor = '#00000000',
+      tickfont = list(
+             size = 8,
+             color = 'rgb(158,202,225)')
+      ), 
+    yaxis = list( 
+      title = "",
+      zerolinecolor = '#00000000', 
+      zerolinewidth = 2, 
+      gridcolor = '#00000000',
+      tickfont = list(
+             size = 8,
+             color = 'rgb(158,202,225)')
+      )
+    )
+
+fig
+
+```
+
