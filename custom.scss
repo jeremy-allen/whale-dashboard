@@ -1,12 +1,17 @@
 /*-- scss:defaults --*/
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;700&display=swap');
+
 $card-border-width: 0 !default;
+$font-family-sans-serif: "Source Code Pro";
+$navbar-bg: #1a0933;
+$navbar-fg: #D6E4E9;
 
 /*-- scss:rules --*/
 
-.navbar {
-  background-color: #1a0933;
-  color: #D6E4E9;
+body{
+  font-family: "Source Code Pro";
+  font-weight: 300;
 }
 
 .quarto-dashboard .navbar .navbar-nav .active {

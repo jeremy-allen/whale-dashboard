@@ -151,7 +151,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                     color = '#D6E4E9',
                     width = .2))) |> 
   layout(
-    margin = list(l = 20, r = 10, b = 10, t = 35, pad = 0),
+    margin = list(l = 30, r = 10, b = 10, t = 35, pad = 0),
     paper_bgcolor = "#00000000",
     title = list(
       font = list(
@@ -172,7 +172,6 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
     yaxis = list( 
       title = "",
       ticklen = 10,
-      shift = "-4px",
       zerolinecolor = '#00000000', 
       zerolinewidth = 2, 
       gridcolor = '#00000000',
