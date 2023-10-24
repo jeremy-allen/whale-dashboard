@@ -14,6 +14,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(plotly)
+library(reactable)
 ```
 
 
@@ -73,13 +74,15 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
 ![](images/gray-whale-illustration.png)
 
 
-# Map
+# Sightings
 
 ## Row
 
+### Column {.tabset width=80%}
+
 ```{r}
+#| title: Map
 #| padding: 0px
-#| width: 80%
 
 fig <- dat  |> 
   plot_ly(
@@ -92,8 +95,8 @@ fig <- fig  |>
   layout(
     mapbox= list(
     style = "white-bg",
-    zoom = 3,
-    center = list(lon = -127, lat= 46),
+    zoom = 3.5,
+    center = list(lon = -140, lat= 50),
     layers = list(list(
       below = 'traces',
       sourcetype = "raster",
@@ -108,8 +111,19 @@ fig
 ```
 
 ```{r}
+#| title: Data
+
+dat |> 
+  select(year, month, date, research_group, photographer_1, dec_lat, dec_long) |> 
+reactable(
+  filterable = TRUE
+)
+```
+
+### Column {width = 20%}
+
+```{r}
 #| padding: 0px
-#| width: 20%
 
 yr_count <- dat |> 
   count(year)
@@ -127,7 +141,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       font = list(
         size = 11,
              color = 'rgb(158,202,225)'),
-      text = "By Year"
+      text = "Sightings 1993-2014"
        ),
     plot_bgcolor='#00000000', 
     xaxis = list( 
@@ -148,7 +162,8 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
              size = 8,
              color = 'rgb(158,202,225)')
       )
-    )
+    ) |> 
+  config(displayModeBar = F)
 
 fig
 
