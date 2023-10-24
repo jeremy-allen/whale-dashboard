@@ -88,6 +88,12 @@ fig <- dat  |>
     type = "scattermapbox",
     text = ~date,
     hoverinfo = 'text',
+    hovertemplate = paste(
+      "<b>Date: %{text}</b><br><br>",
+      "Lat: %{lat}<br>",
+      "Lon: %{lon}<br>",
+      "<extra></extra>"
+    ),
     marker = list(color = "fuchsia"))
 fig <- fig  |> 
   layout(
