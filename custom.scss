@@ -22,6 +22,17 @@ body{
   background-size: 50px;
 }
 
+#bslib-full-screen-overlay {
+  background-color: #1a093390;
+}
+
+#bslib-full-screen-exit {
+  font-family: "Source Code Pro";
+  font-weight: 300;
+  font-size: 1rem;
+  color: #D6E4E9;
+}
+
 .card-body {
   background: rgba(255,255,255,0);
 }
