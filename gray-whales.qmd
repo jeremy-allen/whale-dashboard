@@ -81,33 +81,81 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
 #| title: Map
 #| padding: 0px
 
-fig <- dat  |> 
-  plot_ly(
+# fig <- dat  |> 
+#   plot_ly(
+#     lat = ~dec_lat,
+#     lon = ~dec_long,
+#     type = "scattermapbox",
+#     text = ~date,
+#     hoverinfo = 'text',
+#     hovertemplate = paste(
+#       "<b>Date: %{text}</b><br><br>",
+#       "Lat: %{lat}<br>",
+#       "Lon: %{lon}<br>",
+#       "<extra></extra>"
+#     ),
+#     marker = list(color = "fuchsia"))
+
+fig <- dat |>
+  plot_mapbox(
     lat = ~dec_lat,
     lon = ~dec_long,
-    type = "scattermapbox",
+    split = ~year,
+    size=2,
+    mode = 'scattermapbox',
     text = ~date,
-    hoverinfo = 'text',
+    hoverinfo='text',
     hovertemplate = paste(
       "<b>Date: %{text}</b><br><br>",
       "Lat: %{lat}<br>",
       "Lon: %{lon}<br>",
       "<extra></extra>"
-    ),
-    marker = list(color = "fuchsia"))
+    ))
+
 fig <- fig  |> 
   layout(
+    title = list(
+      text = "Double-click a year to isolate",
+      font = list(
+        family = "Source Code Pro",
+        size = 10,
+        color = "#D6E4E9"
+      )
+    ),
+    legend = list(
+      font = list(
+        family = "Source Code Pro",
+        size = 10,
+        color = "#D6E4E9"
+      ),
+      title = list(
+        text ='Year',
+        font = list(
+        family = "Source Code Pro",
+        size = 10,
+        color = "#D6E4E9"
+      )
+        )
+    ),
+    paper_bgcolor = "#00000000",
+    plot_bgcolor = "#00000000",
+    margin = list(l = 25,
+                  r = 25,
+                  b = 25,
+                  t = 25,
+                  pad = 4),
     mapbox= list(
-    style = "white-bg",
-    zoom = 3.5,
-    center = list(lon = -140, lat= 50),
+    style = "mapbox://styles/18chains/clo5sajd900hv01pbf4ya6zj5",
+    pitch = 75,
+    zoom = 10,
+    center = list(lon = -124.72, lat= 48.384),
+    bearing = 5,
     layers = list(list(
-      below = 'traces',
-      sourcetype = "raster",
-      source = list("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}")))
-     ),
-    paper_bgcolor = "#00000000"
+      below = 'traces'))
+     )
     )
+
+fig <- fig %>% config(mapboxAccessToken = Sys.getenv("MAPBOX_TOKEN"))
 
 fig
 
@@ -158,7 +206,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                     color = '#D6E4E9',
                     width = .2))) |> 
   layout(
-    margin = list(l = 30, r = 10, b = 10, t = 35, pad = 0),
+    margin = list(l = 40, r = 30, b = 10, t = 80, pad = 0),
     paper_bgcolor = "#00000000",
     title = list(
       font = list(
