@@ -62,6 +62,9 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
          photographer_1 = as_factor(photographer_1)) |>
   relocate(month, .after = date)
 
+obs <- nrow(dat)
+days <- dat$date |> unique() |> length()
+teams <- dat$research_group |> unique() |> length()
 
 ```
 
@@ -75,7 +78,7 @@ dat <- read_csv(here("data", "ER-ID  NMML-MAKAH 1993 - 2014.csv")) |>
 
 ## Row
 
-### Column {.tabset width=75%}
+### Column {.tabset width=70%}
 
 ```{r}
 #| title: Map
@@ -190,7 +193,40 @@ reactable(
 )
 ```
 
-### Column {width = 25%}
+### Column {width = 30%}
+
+#### Row {.tabset}
+
+##### Stats
+
+```{r}
+#| component: valuebox
+#| title: "Total Sightings"
+list(
+  color = "secondary",
+  value = obs
+)
+```
+
+```{r}
+#| component: valuebox
+#| title: "Days"
+list(
+  color = "primary",
+  value = days
+)
+```
+
+```{r}
+#| component: valuebox
+#| title: "Research Groups"
+list(
+  color = "secondary",
+  value = teams
+)
+```
+
+##### Yearly Observations
 
 ```{r}
 #| padding: 0px
@@ -206,7 +242,7 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                     color = '#D6E4E9',
                     width = .2))) |> 
   layout(
-    margin = list(l = 40, r = 30, b = 10, t = 80, pad = 0),
+    margin = list(l = 4, r = 4, b = 55, t = 30, pad = 4),
     paper_bgcolor = "#00000000",
     title = list(
       font = list(
