@@ -118,10 +118,10 @@ fig <- dat |>
 fig <- fig  |> 
   layout(
     title = list(
-      text = "Double-click a year to isolate",
+      text = "",
       font = list(
         family = "Source Code Pro",
-        size = 10,
+        size = 11,
         color = "#D6E4E9"
       )
     ),
@@ -132,13 +132,13 @@ fig <- fig  |>
         color = "#D6E4E9"
       ),
       title = list(
-        text ='Year',
+        text ='Double-click year<br>to isolate it,<br>then single-click<br>years to add:<br>',
         font = list(
-        family = "Source Code Pro",
-        size = 10,
-        color = "#D6E4E9"
-      )
+          family = "Source Code Pro",
+          size = 10,
+          color = "#D6E4E9"
         )
+      )
     ),
     paper_bgcolor = "#00000000",
     plot_bgcolor = "#00000000",
@@ -242,13 +242,15 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
                     color = '#D6E4E9',
                     width = .2))) |> 
   layout(
-    margin = list(l = 4, r = 4, b = 55, t = 30, pad = 4),
+    margin = list(l = 4, r = 4, b = 55, t = 20, pad = 4),
     paper_bgcolor = "#00000000",
-    title = list(
-      font = list(
+    font = list(
+        family = "Source Code Pro",
         size = 11,
-             color = '#D6E4E9'),
-      text = "Sightings 1993-2014"
+        color = "#D6E4E9"
+    ),
+    title = list(
+      text = ""
        ),
     plot_bgcolor='#00000000', 
     xaxis = list( 
@@ -257,9 +259,9 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       zerolinewidth = 2, 
       gridcolor = '#00000000',
       tickfont = list(
-             size = 8,
-             color = '#D6E4E9')
-      ), 
+        size = 9
+      )
+    ), 
     yaxis = list( 
       title = "",
       ticklen = 10,
@@ -267,11 +269,10 @@ fig <-  plot_ly(data = yr_count, x = ~n, y = ~year, type = 'bar',
       zerolinewidth = 2, 
       gridcolor = '#00000000',
       tickfont = list(
-             size = 8,
-             color = '#D6E4E9' 
+        size = 9 
       )
-     )
-    ) |> 
+    )
+  )|> 
   config(displayModeBar = F)
 
 fig
