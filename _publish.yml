@@ -1,0 +1,4 @@
+- source: gray-whales.qmd
+  quarto-pub:
+    - id: 89f3b4df-afda-4d11-88b9-67ade7e63b3b
+      url: 'https://jeremydata.quarto.pub/gray-whale-sightings'
